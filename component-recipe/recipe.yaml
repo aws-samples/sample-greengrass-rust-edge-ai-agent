@@ -1,0 +1,75 @@
+# Greengrass component recipe for the Rust edge AI classifier.
+# Placeholders replaced by scripts/deploy_component.sh:
+#   BUCKET      — S3 bucket holding component artifacts
+#   MODEL_HASH  — contents of model/model_hash.sha256
+RecipeFormatVersion: "2020-01-25"
+ComponentName: com.example.EdgeAIClassifier
+ComponentVersion: "1.0.1"
+ComponentDescription: Rust-based ONNX anomaly classifier for pump station sensors
+ComponentPublisher: AWSsamples
+ComponentDependencies:
+  aws.greengrass.Nucleus:
+    VersionRequirement: ">=2.14.0"
+ComponentConfiguration:
+  DefaultConfiguration:
+    # Numeric settings below are documentation of the binary's built-in
+    # defaults — they are NOT passed through the run command (Greengrass
+    # interpolates numbers as e.g. "300.0", which breaks integer parsing;
+    # see the Lifecycle comment). To override one, add it to the
+    # --config-json literal in the run script.
+    #
+    # escalation_cooldown_seconds (default 300): suppress repeat
+    # alerts/escalations of the same anomaly type. A persistent fault
+    # classifies every second; without this, one stuck anomaly sends ~86K
+    # messages/day per device to the cloud agent (Lambda + Bedrock cost).
+    escalation_threshold: 0.7
+    escalation_cooldown_seconds: 300
+    offline_queue_size: 1000
+    sensor_window_seconds: 60
+    model_sha256: "MODEL_HASH"
+    sensor_ipc_topic: "local/sensors/readings"
+    mqtt_alert_topic: "pump-stations/{iot:thingName}/alerts"
+    mqtt_escalation_topic: "pump-stations/{iot:thingName}/escalations"
+    mqtt_telemetry_topic: "pump-stations/{iot:thingName}/telemetry"
+    mqtt_response_topic: "pump-stations/{iot:thingName}/recommendations"
+    accessControl:
+      aws.greengrass.ipc.mqttproxy:
+        com.example.EdgeAIClassifier:mqttproxy:1:
+          policyDescription: Publish alerts/escalations/telemetry, subscribe to recommendations
+          operations:
+            - aws.greengrass#PublishToIoTCore
+            - aws.greengrass#SubscribeToIoTCore
+          resources:
+            - "pump-stations/{iot:thingName}/alerts"
+            - "pump-stations/{iot:thingName}/escalations"
+            - "pump-stations/{iot:thingName}/telemetry"
+            - "pump-stations/{iot:thingName}/recommendations"
+      aws.greengrass.ipc.pubsub:
+        com.example.EdgeAIClassifier:pubsub:1:
+          policyDescription: Subscribe to local sensor readings
+          operations:
+            - aws.greengrass#SubscribeToTopic
+          resources:
+            - "local/sensors/readings"
+Manifests:
+  - Platform:
+      os: linux
+      architecture: aarch64
+    Lifecycle:
+      # Config JSON is assembled from individual scalar interpolations:
+      # `{configuration:/}` renders as a Java-style map (not JSON), and
+      # numeric values interpolate as e.g. "1000.0" which breaks integer
+      # parsing — numeric settings use the binary's built-in defaults and
+      # can be overridden per-deployment by editing this script line.
+      run:
+        script: >-
+          {artifacts:path}/edge-ai-classifier
+          --model-path {artifacts:path}/sample_model.onnx
+          --config-json '{"model_sha256":"{configuration:/model_sha256}","sensor_ipc_topic":"{configuration:/sensor_ipc_topic}","mqtt_alert_topic":"{configuration:/mqtt_alert_topic}","mqtt_escalation_topic":"{configuration:/mqtt_escalation_topic}","mqtt_telemetry_topic":"{configuration:/mqtt_telemetry_topic}","mqtt_response_topic":"{configuration:/mqtt_response_topic}"}'
+    Artifacts:
+      - URI: "s3://BUCKET/components/com.example.EdgeAIClassifier/1.0.1/edge-ai-classifier"
+        Permission:
+          Execute: OWNER
+      - URI: "s3://BUCKET/components/com.example.EdgeAIClassifier/1.0.1/sample_model.onnx"
+        Digest: "MODEL_HASH"
+        Algorithm: SHA-256

@@ -1,0 +1,28 @@
+# Rust
+target/
+**/*.rs.bk
+*.pdb
+edge-component/dist/
+
+# Intermediate model artifacts (the quantized sample_model.onnx and the
+# tiny test fixture ARE committed)
+model/model_fp32.onnx
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+cdk.out/
+
+# Environment / secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp

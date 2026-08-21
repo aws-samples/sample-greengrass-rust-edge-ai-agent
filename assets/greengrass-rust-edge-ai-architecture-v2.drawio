@@ -1,0 +1,169 @@
+<mxfile host="Electron" pages="1">
+  <diagram name="v2-architecture" id="v2arch-0001">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== Edge group ===== -->
+        <mxCell id="edge_group" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_on_premise;strokeColor=#5A6C86;fillColor=none;verticalAlign=top;align=center;spacingTop=25;dashed=0;" value="Edge (Pump Station Gateway)" vertex="1">
+          <mxGeometry height="560" width="470" x="20" y="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sensors" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.sensor;" value="Industrial Sensors" vertex="1">
+          <mxGeometry height="78" width="70" x="60" y="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gg_component" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.greengrass;" value="AWS IoT Greengrass&lt;br&gt;(Rust Component)" vertex="1">
+          <mxGeometry height="78" width="78" x="250" y="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="onnx" parent="1" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.machine_learning;sketch=0;" value="ONNX Classifier&lt;br&gt;(int8, quantized)" vertex="1">
+          <mxGeometry height="78" width="78" x="250" y="400" as="geometry" />
+        </mxCell>
+
+        <mxCell id="offline_queue" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.queue;" value="Offline Queue&lt;br&gt;(1,000 msgs, FIFO)" vertex="1">
+          <mxGeometry height="78" width="78" x="380" y="400" as="geometry" />
+        </mxCell>
+
+        <mxCell id="hmi" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" value="Local HMI&lt;br&gt;(recommendation log)" vertex="1">
+          <mxGeometry height="78" width="78" x="56" y="400" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Cloud group ===== -->
+        <mxCell id="cloud_group" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" value="AWS Cloud" vertex="1">
+          <mxGeometry height="560" width="800" x="560" y="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iot_core" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.iot_core;" value="AWS IoT Core" vertex="1">
+          <mxGeometry height="78" width="78" x="610" y="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gg_deployment" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.greengrass;" value="AWS IoT Greengrass&lt;br&gt;(Deployment)" vertex="1">
+          <mxGeometry height="78" width="78" x="890" y="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="Amazon S3&lt;br&gt;(Binary + Model Artifacts)" vertex="1">
+          <mxGeometry height="78" width="78" x="1120" y="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="telemetry_rule" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.rule;" value="IoT Rule&lt;br&gt;(telemetry)" vertex="1">
+          <mxGeometry height="66" width="40" x="790" y="390" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamodb" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="Amazon DynamoDB&lt;br&gt;(telemetry, 90-day TTL)" vertex="1">
+          <mxGeometry height="78" width="78" x="1120" y="384" as="geometry" />
+        </mxCell>
+
+        <mxCell id="escalation_rule" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.rule;" value="IoT Rule&lt;br&gt;(escalations)" vertex="1">
+          <mxGeometry height="66" width="40" x="629" y="540" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="AWS Lambda&lt;br&gt;(thin invoker)" vertex="1">
+          <mxGeometry height="78" width="78" x="770" y="534" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agentcore" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.bedrock_agentcore;" value="Amazon Bedrock&lt;br&gt;AgentCore runtime&lt;br&gt;(Strands agent)" vertex="1">
+          <mxGeometry height="78" width="78" x="960" y="534" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Edge-local flows ===== -->
+        <mxCell id="f1" edge="1" parent="1" source="sensors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="gg_component" value="❶ Modbus/IPC (1 Hz)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2" edge="1" parent="1" source="gg_component" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="onnx" value="❷ Classify 60-s window">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f_queue" edge="1" parent="1" source="gg_component" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;dashed=1;strokeColor=#ED7100;exitX=1;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="offline_queue" value="offline: queue,&lt;br&gt;drain FIFO on reconnect">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="419" y="268" />
+              <mxPoint x="419" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="f8" edge="1" parent="1" source="gg_component" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;dashed=1;strokeColor=#232F3E;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;verticalAlign=bottom;" target="hmi" value="❽ Log&lt;br&gt;recommendation">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="268" />
+              <mxPoint x="180" y="439" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== Device <-> IoT Core (MQTT via Greengrass proxy) ===== -->
+        <mxCell id="f345" edge="1" parent="1" source="gg_component" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#7AA116;strokeWidth=2;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" target="iot_core" value="MQTT: ❸ telemetry (60-s aggregates)&lt;br&gt;❹ alerts · ❺ escalations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f7back" edge="1" parent="1" source="iot_core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;dashed=1;strokeColor=#7AA116;strokeWidth=2;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;" target="gg_component" value="❼ Recommendation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Telemetry ingestion path (no Lambda) ===== -->
+        <mxCell id="f3a" edge="1" parent="1" source="iot_core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="telemetry_rule" value="❸">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="249" />
+              <mxPoint x="740" y="423" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="f3b" edge="1" parent="1" source="telemetry_rule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="dynamodb" value="❸ direct write (no Lambda)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Escalation path ===== -->
+        <mxCell id="f6a" edge="1" parent="1" source="iot_core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="escalation_rule" value="❺">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f6b" edge="1" parent="1" source="escalation_rule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="lambda" value="❻">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f6c" edge="1" parent="1" source="lambda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#232F3E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;verticalAlign=top;" target="agentcore" value="❻ Invoke&lt;br&gt;AgentRuntime">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Agent tools ===== -->
+        <mxCell id="f7a" edge="1" parent="1" source="agentcore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#232F3E;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="dynamodb" value="❼ query_history&lt;br&gt;(7-day baselines)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f7b" edge="1" parent="1" source="agentcore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;dashed=1;strokeColor=#7AA116;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;verticalAlign=bottom;" target="iot_core" value="❼ publish_response">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="999" y="655" />
+              <mxPoint x="669" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== Deployment path ===== -->
+        <mxCell id="fd1" edge="1" parent="1" source="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;dashed=1;strokeColor=#ED7100;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="gg_deployment" value="artifacts (SHA-256 digest)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fd2" edge="1" parent="1" source="gg_deployment" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;dashed=1;strokeColor=#ED7100;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="gg_component" value="deploy binary + model">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="929" y="160" />
+              <mxPoint x="289" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== Legend ===== -->
+        <mxCell id="legend" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;fillColor=#F5F5F5;strokeColor=#CCCCCC;rounded=1;spacingLeft=8;spacingTop=4;spacingBottom=4;" value="&lt;b&gt;Edge footprint:&lt;/b&gt; Rust SDK (&amp;lt;0.5 MB runtime) + statically linked ONNX Runtime; measured peak RSS 20–30 MB — fits the 64 MB budget&lt;br&gt;&lt;b&gt;Offline-first:&lt;/b&gt; local inference continues during outages; escalations queue (1,000, drop-oldest) and drain FIFO with original timestamps&lt;br&gt;&lt;b&gt;Escalation cooldown:&lt;/b&gt; repeats of the same anomaly type suppressed for 300 s — caps a persistent fault at ~288 escalations/day/device&lt;br&gt;&lt;b&gt;Cloud agent:&lt;/b&gt; Strands agent on AgentCore compares the window against 7-day DynamoDB baselines and publishes severity/cause/action/evidence" vertex="1">
+          <mxGeometry height="72" width="820" x="20" y="710" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

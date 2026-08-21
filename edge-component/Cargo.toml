@@ -1,0 +1,46 @@
+[package]
+name = "edge-ai-classifier"
+version = "1.0.0"
+edition = "2021"
+description = "Rust-based ONNX anomaly classifier Greengrass component for pump station sensors"
+license = "MIT-0"
+
+[features]
+# The Greengrass SDK is a sync, Linux-only C-binding crate (epoll/pthreads);
+# it cannot compile on macOS/Windows hosts. Core logic and all tests build
+# without it; the aarch64 device build enables it (see Dockerfile).
+default = []
+greengrass = ["dep:aws-greengrass-component-sdk"]
+
+[dependencies]
+# Library name inside code is `gg_sdk` (the crate's actual lib name).
+aws-greengrass-component-sdk = { version = "1.0", optional = true }
+# tls-rustls instead of default tls-native: avoids an openssl-sys build
+# dependency that has no aarch64 sysroot in the cross-compile image.
+ort = { version = "=2.0.0-rc.12", default-features = false, features = [
+    "std",
+    "ndarray",
+    "download-binaries",
+    "copy-dylibs",
+    "tls-rustls",
+] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+time = { version = "0.3", features = ["formatting"] }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+tokio-test = "0.4"
+
+[[bench]]
+name = "bench_inference"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = false # stripped explicitly in the Docker build for aarch64
