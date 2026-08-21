@@ -10,13 +10,13 @@ The docs form an onboarding ladder — each step assumes the one before it. Jump
 
 | Step | Document | What it gives you | Read it when… |
 |---|---|---|---|
-| 1️⃣ Story | [Overview](docs/overview.md) | The whole system in plain language — the pump station, the "two brains," why edge + cloud | You're new to edge AI, IoT, or this project |
-| 1️⃣½ See it | [Interactive explainer](docs/explainer.html) *(open locally in a browser)* | An animated, playable model of the data flow: inject faults, cut the network, watch messages travel edge→cloud→edge | You want to *watch* the story instead of reading it |
-| 2️⃣ Terms | [Glossary](docs/learning/glossary.md) | Plain-English definitions of every term the docs use (crate, ONNX, quantization, IPC, AgentCore, …) | A word in any doc stops you |
-| 3️⃣ Rust + setup | [Learning guide](docs/learning/rust-concepts-for-greengrass.md) | Rust installation and verification, language basics, each concept mapped to the real code that uses it | You want to read or modify the Rust component |
-| 4️⃣ Design | [Architecture](docs/architecture.md) | Language-split rationale, component task model, sync-SDK-to-tokio bridge, ort linking, cloud data flow | You want to know *why* it's built this way |
-| 5️⃣ Hands-on | [Runbook](docs/runbook.md) | Testing in 3 levels: free local → live AWS → real device, with expected outputs and failure modes | You want to run it |
-| 6️⃣ Presenting | [Demo script](docs/demo.md) | A rehearsed 4-act demo flow with prep checklist and teardown | You're showing it to an audience |
+| Story | [Overview](docs/overview.md) | The whole system in plain language — the pump station, the "two brains," why edge + cloud | You're new to edge AI, IoT, or this project |
+| See it | [Interactive explainer](docs/explainer.html) *(open locally in a browser)* | An animated, playable model of the data flow: inject faults, cut the network, watch messages travel edge→cloud→edge | You want to *watch* the story instead of reading it |
+| Terms | [Glossary](docs/learning/glossary.md) | Plain-English definitions of every term the docs use (crate, ONNX, quantization, IPC, AgentCore, …) | A word in any doc stops you |
+| Rust + setup | [Learning guide](docs/learning/rust-concepts-for-greengrass.md) | Rust installation and verification, language basics, each concept mapped to the real code that uses it | You want to read or modify the Rust component |
+| Design | [Architecture](docs/architecture.md) | Language-split rationale, component task model, sync-SDK-to-tokio bridge, ort linking, cloud data flow | You want to know *why* it's built this way |
+| Hands-on | [Runbook](docs/runbook.md) | Testing in 3 levels: free local → live AWS → real device, with expected outputs and failure modes | You want to run it |
+| Presenting | [Demo script](docs/demo.md) | A rehearsed 4-act demo flow with prep checklist and teardown | You're showing it to an audience |
 
 Reference material behind the ladder: [benchmarks](benchmarks/README.md) (methodology + measured numbers), [Kiro spec v2](docs/kiro-spec-greengrass-rust-edge-ai-v2.md) (the requirements/design/tasks that drove the implementation), and the [blog draft v2](docs/greengrass-rust-edge-ai-agent-aws-v2.md).
 
@@ -82,7 +82,7 @@ after testing.**
 
 ![Architecture diagram](assets/greengrass-rust-edge-ai-architecture-v2.png)
 
-Full design notes in [docs/architecture.md](docs/architecture.md) (step 4️⃣ of the documentation ladder above).
+Full design notes in [docs/architecture.md](docs/architecture.md).
 
 ## Security
 
